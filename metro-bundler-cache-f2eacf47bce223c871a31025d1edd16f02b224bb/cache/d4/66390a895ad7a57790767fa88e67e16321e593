@@ -1,0 +1,19 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var LayoutProvider = function () {
+    function LayoutProvider(getLayoutTypeForIndex, setLayoutForType) {
+        this._getLayoutTypeForIndex = getLayoutTypeForIndex;
+        this._setLayoutForType = setLayoutForType;
+    }
+
+    LayoutProvider.prototype.getLayoutTypeForIndex = function (index) {
+        return this._getLayoutTypeForIndex(index);
+    };
+
+    LayoutProvider.prototype.setLayoutForType = function (type, dimension, index) {
+        return this._setLayoutForType(type, dimension, index);
+    };
+    return LayoutProvider;
+}();
+exports.default = LayoutProvider;

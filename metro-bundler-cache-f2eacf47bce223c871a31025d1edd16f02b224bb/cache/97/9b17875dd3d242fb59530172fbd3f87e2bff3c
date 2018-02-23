@@ -1,0 +1,202 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/home/flowing/Documents/ReactNativeApps/Books/App.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _reactNativeYoutube = require('react-native-youtube');
+
+var _reactNativeYoutube2 = _interopRequireDefault(_reactNativeYoutube);
+
+var _recyclerlistview = require('recyclerlistview');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  App: {
+    displayName: 'App'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/home/flowing/Documents/ReactNativeApps/Books/App.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var instructions = _reactNative.Platform.select({
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu'
+});
+
+var App = _wrapComponent('App')(function (_Component) {
+  _inherits(App, _Component);
+
+  function App() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, App);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = { location: 'Kathmandu',
+      grade: 'none',
+      chapter: 'none' }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: styles.main, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 36
+          }
+        },
+        _react3.default.createElement(
+          _reactNative.View,
+          { style: styles.container, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 37
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.Picker,
+            {
+              onValueChange: function onValueChange(value, index) {
+                return _this2.setState({ grade: value });
+              },
+              mode: 'dropdown',
+              style: styles.picker, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 38
+              }
+            },
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Grade 1', value: '1', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 42
+              }
+            }),
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Grade 2', value: '2', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 43
+              }
+            }),
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Grade 3', value: '3', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 44
+              }
+            })
+          ),
+          _react3.default.createElement(
+            _reactNative.Picker,
+            { enabled: !(this.state.grade == "none"),
+              onValueChange: function onValueChange() {
+                return _this2.props;
+              },
+              style: styles.picker,
+              mode: 'dropdown', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 48
+              }
+            },
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Chapter 1', value: '1', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 52
+              }
+            }),
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Chapter 2', value: '2', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 53
+              }
+            }),
+            _react3.default.createElement(_reactNative.Picker.Item, { label: 'Chapter 3', value: '3', __source: {
+                fileName: _jsxFileName,
+                lineNumber: 54
+              }
+            })
+          )
+        ),
+        _react3.default.createElement(_reactNative.View, { style: styles.container, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 62
+          }
+        })
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.Component));
+
+exports.default = App;
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    top: 20,
+    flexDirection: 'row',
+    backgroundColor: '#F5FCFF'
+  },
+  main: {
+    flex: 2,
+    top: 20,
+    flexDirection: 'column',
+    backgroundColor: '#F5FCFF'
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5
+  },
+  picker: {
+    color: '#678312',
+    height: 20,
+    width: 150
+  },
+  containerInner: {
+    flex: 1,
+    top: 20,
+    flexDirection: 'row',
+    backgroundColor: '#F5FCFF'
+  }
+
+});

@@ -1,0 +1,257 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/home/flowing/Documents/ReactNativeApps/Books/node_modules/react-native-youtube/YouTube.android.js';
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactNative = require('react-native');
+
+var _reactNative2 = _interopRequireDefault(_reactNative);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  YouTube: {
+    displayName: 'YouTube'
+  }
+};
+
+var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/home/flowing/Documents/ReactNativeApps/Books/node_modules/react-native-youtube/YouTube.android.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _reactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var BackHandler = _reactNative.BackHandler || _reactNative.BackAndroid;
+
+var RCTYouTube = (0, _reactNative.requireNativeComponent)('ReactYouTube', YouTube, {
+  nativeOnly: {
+    onYouTubeError: true,
+    onYouTubeErrorReady: true,
+    onYouTubeErrorChangeState: true,
+    onYouTubeErrorChangeQuality: true,
+    onYouTubeChangeFullscreen: true
+  }
+});
+
+var YouTube = _wrapComponent('YouTube')((_temp = _class = function (_React$Component) {
+  _inherits(YouTube, _React$Component);
+
+  function YouTube(props) {
+    _classCallCheck(this, YouTube);
+
+    var _this = _possibleConstructorReturn(this, (YouTube.__proto__ || Object.getPrototypeOf(YouTube)).call(this, props));
+
+    _this._backPress = function () {
+      if (_this.state.fullscreen) {
+        _this.setState({ fullscreen: false });
+        return true;
+      }
+      return false;
+    };
+
+    _this._onError = function (event) {
+      if (_this.props.onError) _this.props.onError(event.nativeEvent);
+    };
+
+    _this._onReady = function (event) {
+      _this.setState({ moduleMargin: _reactNative.StyleSheet.hairlineWidth });
+      if (_this.props.onReady) _this.props.onReady(event.nativeEvent);
+    };
+
+    _this._onChangeState = function (event) {
+      if (_this.props.onChangeState) _this.props.onChangeState(event.nativeEvent);
+    };
+
+    _this._onChangeQuality = function (event) {
+      if (_this.props.onChangeQuality) _this.props.onChangeQuality(event.nativeEvent);
+    };
+
+    _this._onChangeFullscreen = function (event) {
+      var isFullscreen = event.nativeEvent.isFullscreen;
+
+      if (_this.state.fullscreen !== isFullscreen) _this.setState({ fullscreen: isFullscreen });
+      if (_this.props.onChangeFullscreen) _this.props.onChangeFullscreen(event.nativeEvent);
+    };
+
+    _this.state = {
+      moduleMargin: _reactNative.StyleSheet.hairlineWidth * 2,
+      fullscreen: props.fullscreen
+    };
+    return _this;
+  }
+
+  _createClass(YouTube, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      BackHandler.addEventListener('hardwareBackPress', this._backPress);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.fullscreen !== this.props.fullscreen) {
+        this.setState({ fullscreen: nextProps.fullscreen });
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      BackHandler.removeEventListener('hardwareBackPress', this._backPress);
+    }
+  }, {
+    key: 'seekTo',
+    value: function seekTo(seconds) {
+      _reactNative.UIManager.dispatchViewManagerCommand(_reactNative2.default.findNodeHandle(this._nativeComponentRef), _reactNative.UIManager.ReactYouTube.Commands.seekTo, [parseInt(seconds, 10)]);
+    }
+  }, {
+    key: 'nextVideo',
+    value: function nextVideo() {
+      _reactNative.UIManager.dispatchViewManagerCommand(_reactNative2.default.findNodeHandle(this._nativeComponentRef), _reactNative.UIManager.ReactYouTube.Commands.nextVideo, []);
+    }
+  }, {
+    key: 'previousVideo',
+    value: function previousVideo() {
+      _reactNative.UIManager.dispatchViewManagerCommand(_reactNative2.default.findNodeHandle(this._nativeComponentRef), _reactNative.UIManager.ReactYouTube.Commands.previousVideo, []);
+    }
+  }, {
+    key: 'playVideoAt',
+    value: function playVideoAt(index) {
+      _reactNative.UIManager.dispatchViewManagerCommand(_reactNative2.default.findNodeHandle(this._nativeComponentRef), _reactNative.UIManager.ReactYouTube.Commands.playVideoAt, [parseInt(index, 10)]);
+    }
+  }, {
+    key: 'videosIndex',
+    value: function videosIndex() {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        return _reactNative.NativeModules.YouTubeModule.videosIndex(_reactNative2.default.findNodeHandle(_this2._nativeComponentRef)).then(function (index) {
+          return resolve(index);
+        }).catch(function (errorMessage) {
+          return reject(errorMessage);
+        });
+      });
+    }
+  }, {
+    key: 'currentTime',
+    value: function currentTime() {
+      var _this3 = this;
+
+      return new Promise(function (resolve, reject) {
+        return _reactNative.NativeModules.YouTubeModule.currentTime(_reactNative2.default.findNodeHandle(_this3._nativeComponentRef)).then(function (currentTime) {
+          return resolve(currentTime);
+        }).catch(function (errorMessage) {
+          return reject(errorMessage);
+        });
+      });
+    }
+  }, {
+    key: 'duration',
+    value: function duration() {
+      var _this4 = this;
+
+      return new Promise(function (resolve, reject) {
+        return _reactNative.NativeModules.YouTubeModule.duration(_reactNative2.default.findNodeHandle(_this4._nativeComponentRef)).then(function (duration) {
+          return resolve(duration);
+        }).catch(function (errorMessage) {
+          return reject(errorMessage);
+        });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: [styles.container, this.props.style], __source: {
+            fileName: _jsxFileName,
+            lineNumber: 179
+          }
+        },
+        _react3.default.createElement(RCTYouTube, _extends({
+          ref: function ref(component) {
+            _this5._nativeComponentRef = component;
+          }
+        }, this.props, {
+          fullscreen: this.state.fullscreen,
+          style: [styles.module, { margin: this.state.moduleMargin }],
+          onYouTubeError: this._onError,
+          onYouTubeReady: this._onReady,
+          onYouTubeChangeState: this._onChangeState,
+          onYouTubeChangeQuality: this._onChangeQuality,
+          onYouTubeChangeFullscreen: this._onChangeFullscreen,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 180
+          }
+        }))
+      );
+    }
+  }]);
+
+  return YouTube;
+}(_react3.default.Component), _class.propTypes = {
+  apiKey: _propTypes2.default.string.isRequired,
+  videoId: _propTypes2.default.string,
+  videoIds: _propTypes2.default.arrayOf(_propTypes2.default.string),
+  playlistId: _propTypes2.default.string,
+  play: _propTypes2.default.bool,
+  loop: _propTypes2.default.bool,
+  fullscreen: _propTypes2.default.bool,
+  controls: _propTypes2.default.oneOf([0, 1, 2]),
+  showFullscreenButton: _propTypes2.default.bool,
+  resumePlayAndroid: _propTypes2.default.bool,
+  onError: _propTypes2.default.func,
+  onReady: _propTypes2.default.func,
+  onChangeState: _propTypes2.default.func,
+  onChangeQuality: _propTypes2.default.func,
+  onChangeFullscreen: _propTypes2.default.func,
+  style: _reactNative.ViewPropTypes && _reactNative.ViewPropTypes.style || _reactNative.View.propTypes.style
+}, _class.defaultProps = {
+  showFullscreenButton: true,
+  resumePlayAndroid: true
+}, _temp));
+
+exports.default = YouTube;
+
+
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    backgroundColor: 'black'
+  },
+  module: {
+    flex: 1
+  }
+});

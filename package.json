@@ -1,0 +1,49 @@
+{
+  "name": "books",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
+  },
+  "dependencies": {
+    "i": "^0.3.6",
+    "react": "16.0.0",
+    "react-native": "0.51.0",
+    "react-native-material-bottom-navigation": "^0.7.0",
+    "react-native-simple-radio-button": "^2.7.1",
+    "react-native-sound": "^0.10.4",
+    "react-native-view-pager": "^0.2.2",
+    "react-native-youtube": "^1.0.1",
+    "react-native-youtube-player": "0.0.2",
+    "react-navigation": "^1.0.0-beta.27",
+    "recyclerlistview": "^1.2.2",
+    "rn-viewpager": "^1.2.9"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.2.1",
+    "metro": "^0.24.3",
+    "react-test-renderer": "16.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "description": "aa",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uyogesh/BookApp.git"
+  },
+  "keywords": [
+    "book"
+  ],
+  "author": "yogesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uyogesh/BookApp/issues"
+  },
+  "homepage": "https://github.com/uyogesh/BookApp#readme"
+}

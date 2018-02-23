@@ -1,0 +1,9 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+exports.default = isObjectLike;

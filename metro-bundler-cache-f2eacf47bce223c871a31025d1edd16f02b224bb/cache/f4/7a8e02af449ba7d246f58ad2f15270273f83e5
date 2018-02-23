@@ -1,0 +1,9 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var ContextProvider = function () {
+  function ContextProvider() {}
+  return ContextProvider;
+}();
+exports.default = ContextProvider;

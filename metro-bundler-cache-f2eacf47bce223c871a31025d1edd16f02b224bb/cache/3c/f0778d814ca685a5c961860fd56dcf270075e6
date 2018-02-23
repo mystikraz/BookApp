@@ -1,0 +1,13 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var objectProto = Object.prototype;
+
+var nativeObjectToString = objectProto.toString;
+
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+exports.default = objectToString;

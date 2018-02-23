@@ -1,0 +1,61 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var RecycleItemPool = function () {
+    function RecycleItemPool() {
+        this._recyclableObjectMap = {};
+        this._availabilitySet = {};
+    }
+    RecycleItemPool.prototype.putRecycledObject = function (objectType, object) {
+        objectType = this._stringify(objectType);
+        var objectSet = this._getRelevantSet(objectType);
+        if (!this._availabilitySet[object]) {
+            objectSet[object] = null;
+            this._availabilitySet[object] = objectType;
+        }
+    };
+    RecycleItemPool.prototype.getRecycledObject = function (objectType) {
+        objectType = this._stringify(objectType);
+        var objectSet = this._getRelevantSet(objectType);
+        var recycledObject = null;
+        for (var property in objectSet) {
+            if (objectSet.hasOwnProperty(property)) {
+                recycledObject = property;
+                break;
+            }
+        }
+        if (recycledObject) {
+            delete objectSet[recycledObject];
+            delete this._availabilitySet[recycledObject];
+        }
+        return recycledObject;
+    };
+    RecycleItemPool.prototype.removeFromPool = function (object) {
+        if (this._availabilitySet[object]) {
+            delete this._getRelevantSet(this._availabilitySet[object])[object];
+            delete this._availabilitySet[object];
+            return true;
+        }
+        return false;
+    };
+    RecycleItemPool.prototype.clearAll = function () {
+        this._recyclableObjectMap = {};
+        this._availabilitySet = {};
+    };
+    RecycleItemPool.prototype._getRelevantSet = function (objectType) {
+        var objectSet = this._recyclableObjectMap[objectType];
+        if (!objectSet) {
+            objectSet = {};
+            this._recyclableObjectMap[objectType] = objectSet;
+        }
+        return objectSet;
+    };
+    RecycleItemPool.prototype._stringify = function (objectType) {
+        if (typeof objectType === "number") {
+            objectType = objectType.toString();
+        }
+        return objectType;
+    };
+    return RecycleItemPool;
+}();
+exports.default = RecycleItemPool;
