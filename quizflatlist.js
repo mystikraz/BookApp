@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import {FlatList, StyleSheet,Text,Image,WebView,Dimensions} from 'react-native';
+import {View,FlatList, StyleSheet,Text,Image,WebView,Dimensions} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonLabel} from 'react-native-simple-radio-button';
-import {MatchFields} from "./matchfields";
+import MatchFields from "./matchfields";
 import {AppRegistry} from 'react-native';
+import Select from './select';
+
+
+
 const dim = Dimensions.get('window');
 export default class FlastListComp extends React.Component{
 
@@ -36,17 +40,20 @@ export default class FlastListComp extends React.Component{
                         'messenger',
                       ]}
                       question="Please Match The Following."
+                      answer={[['peigon','messenger'],
+                        ['hedgehog','sonic the ?'],
+                        ['peacock','Beautiful'],
+                        ['elephant','largest mammal']]}
                       />
 
                   </View>
                 );
               }
-              else if (item.type === 'image') {
+              else if (item.type === 'select') {
                 return (
-                  <Image
-                    style={{ flex: 1, height: 300, width: 200, alignSelf: 'center' }}
-                    source={{ uri: item.body }}
-                  ></Image>
+                  <Select question={'What is the year Albert Einstein published his Special Theory of Relativity?'}
+                          choices={['1990','1902','1905','1890']}
+                          answer={2}/>
                 );
               }
               else if (item.type === 'video') {

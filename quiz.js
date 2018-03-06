@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import {
-  View
+  View,
+  Text,
 
 } from 'react-native';
-import {QuizFlatList} from "./quizflatlist";
+import QuizFlatList from "./quizflatlist";
 
 export default class Quiz extends Component{
 
     state={
         data:[
-            {'type':'pick'}
+            {'type':'pick'},
+            {'type':'select'},
+            {'type':'audio'}
         ]
     };
 
@@ -17,9 +20,9 @@ export default class Quiz extends Component{
     render(){
         return (
             <View style={{flex:1}}>
-                <View style={{flex:1}}>
+                {/* <View style={{flex:1}}>
                     <Text style={{fontSize:40}}>This is Quiz Page</Text>
-                </View>
+                </View> */}
                 <QuizFlatList
                 data={this.state.data}
                 />

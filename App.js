@@ -21,6 +21,7 @@ import {
   NativeModules,
 
 } from 'react-native';
+
 import { StackNavigator } from "react-navigation";
 import { PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator } from 'rn-viewpager';
 import YouTube from 'react-native-youtube';
@@ -29,10 +30,12 @@ import RecycleTestComponent from './RecyclerView';
 import FlatListComp from './FlatListComp'
 import QuizFlatList from './quizflatlist';
 import MatchFields from './matchfields';
+import Quiz from './quiz';
 const dim = Dimensions.get('window');
 
 
-
+const main = 1;
+const quiz = 2;
 
 let reply = [
   {
@@ -52,7 +55,7 @@ export default class App extends Component {
     this._endReached = this._endReached.bind(this);
     this._renderDotIndicator = this._renderDotIndicator.bind(this);
     this._renderTitleIndicator = this._renderTitleIndicator.bind(this);
-  
+
   }
   static navigationOptions = {
     header: { visible: false, }
@@ -98,7 +101,8 @@ export default class App extends Component {
         { 'type': 'video', 'body': 'https://www.youtube.com/watch?SNggmeilXDQ' },
         { 'type': 'text', 'body': 'Pellentesque eleifend tristique quisque, ultrices fusce erat pulvinar, dictumst ac, ac proin. Feugiat elementum mi dictum sollicitudin egestas, diam sem ante odio eros suspendisse, posuere ornare vivamus commodo at. Consectetuer eget nullam lacus cras auctor. Non at, urna egestas montes vitae ridiculus egestas platea, massa libero. Magnis magna justo pede dignissim lorem, libero libero ipsum feugiat massa diam ac, morbi elit, nihil commodo sed massa volutpat fusce. In id, vivamus nullam mi erat massa non donec. Et neque. Lacinia quis at justo urna ante, tortor sollicitudin non massa laoreet pede non. Nam in nulla id sollicitudin sed, quis orci a, suspendisse ornare nulla pede, in aenean sit praesent tortor. Mi inceptos wisi felis sociis libero leo, voluptate dui ullamcorper lobortis mi, accumsan sodales. Amet eros id vulputate vitae dolor, vestibulum ac. Sed et amet iaculis aliquet bibendum, fermentum ligula eu tristique amet eget nonummy, sed nunc.' }
       ]
-    ]
+    ],
+    whichScreen: main,
   };
 
 
@@ -140,11 +144,13 @@ export default class App extends Component {
 
 
   render() {
-    // const {navigate} =this.props.navigation;
+
+
     if (this.state.isReady) {
-      return (
-        <View style={styles.main}>
-          {/* <View style={styles.container}>
+      if (this.state.whichScreen == main) {
+        return (
+          <View style={styles.main}>
+            {/* <View style={styles.container}>
             <Picker
               selectedValue={this.state.grade || 'Grade'}
               onValueChange={(value) => this.setState({
@@ -174,9 +180,9 @@ export default class App extends Component {
 
           </View> */}
 
-          <View style={styles.list}>
-            {/*               
-            <IndicatorViewPager
+            <View style={styles.list}>
+
+               <IndicatorViewPager
               style={{ flex: 6, flexWrap: 'wrap' }}
               initialPage={0}
 
@@ -190,8 +196,8 @@ export default class App extends Component {
                 </FlatListComp>
               ))}
              
-            </IndicatorViewPager> */}
-
+            </IndicatorViewPager> 
+              {/* 
             <MatchFields
               style={{ flex: 1, flexWrap: 'wrap' }}
               cola={ [
@@ -213,18 +219,26 @@ export default class App extends Component {
                         ['peacock','The Magnificent'],
                         ['elephant','Biggest Mammal']]}
 
-            > </MatchFields>
-            <Button onPress={() => {
-              NativeModules.ActivityStarter.navigateToExample()
-            }}
-              title="Click" />
+            > </MatchFields> */}
+              <Button onPress={() => {
+                this.setState({whichScreen:quiz});
+              }}
+                title="Click" />
+            </View>
+
+
+
+
           </View>
-
-
-
-
-        </View>
-      );
+        );
+      }
+      else{
+        return(
+          <View style={styles.main}>
+          <Quiz style={{width:300, height:400}}/>
+          </View>
+        );
+      }
     }
     else {
       return (
@@ -314,4 +328,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
