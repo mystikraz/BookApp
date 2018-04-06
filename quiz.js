@@ -12,14 +12,14 @@ export default class Quiz extends Component{
         data:[
             {'type':'pick'},
             {'type':'select'},
-            {'type':'audio'}
+            {'type':'image'}
         ]
     };
 
 
     render(){
         return (
-            <View style={{flex:1}}>
+            <View style={{flex:1,background:'#000088'}}>
                 {/* <View style={{flex:1}}>
                     <Text style={{fontSize:40}}>This is Quiz Page</Text>
                 </View> */}

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {View,FlatList, StyleSheet,Text,Image,WebView,Dimensions} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonLabel} from 'react-native-simple-radio-button';
-import MatchFields from "./matchfields";
+import MatchFields from "./matchFieldnew";
 import {AppRegistry} from 'react-native';
 import Select from './select';
+import ImageQuiz from './image';
+import {Card,CardContent,CardTitle} from 'react-native-card-view';
+
 
 
 
@@ -19,13 +22,22 @@ export default class FlastListComp extends React.Component{
     render(){
         return (
             <FlatList
-            style={{ flex: 1, flexWrap: 'wrap' }}
+            style={{ flex: 1,background:'#000088' }}
             data={this.props.data}
 
             renderItem={({ item }) => {
               if (item.type === 'pick') {
                 return (
-                  <View>
+
+                  <Card style={{flex:1}}>
+                    <CardTitle>
+                      <Text style={styles.text}>
+                        
+                    Please Match The Following.
+                      </Text>
+                      </CardTitle>
+                    <CardContent>
+
                       <MatchFields
                       cola={[
                         'peigon',
@@ -45,23 +57,43 @@ export default class FlastListComp extends React.Component{
                         ['peacock','Beautiful'],
                         ['elephant','largest mammal']]}
                       />
+                      </CardContent>
 
-                  </View>
+                  </Card>
                 );
               }
               else if (item.type === 'select') {
                 return (
+                  <Card>
+                    <CardTitle>
+                      <Text style={styles.text}>
+                    What is the year Albert Einstein published his Special Theory of Relativity?
+                      </Text>
+                      </CardTitle>
+                    <CardContent>
                   <Select question={'What is the year Albert Einstein published his Special Theory of Relativity?'}
                           choices={['1990','1902','1905','1890']}
-                          answer={2}/>
+                          answer={'1905'}/>
+                          </CardContent>
+                          </Card>
                 );
               }
-              else if (item.type === 'video') {
+              else if (item.type === 'image') {
                 return (
-                  <WebView
-                    source={{ html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/XpFD-kgQxnI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>' }}
-                    style={{ marginTop: 20, flex: 1, flexWrap: 'wrap', height: 500, width: dim.width }}
-                  />
+                  <Card style={{flex:1,minHeight:200}}>
+                  <CardTitle>
+                  <Text style={styles.text}>
+                  What do you see in the Image?
+                  
+                      </Text>
+                      </CardTitle>
+                  <CardContent>
+                  <ImageQuiz choices={['Elephant','Mouse','Chimp','ButterFly']}
+                  answer={'ButterFly'}
+                  question={'What do you see in the Image?'}
+                  image={'https://images.pexels.com/photos/355401/pexels-photo-355401.jpeg'}/>
+                </CardContent>
+                </Card>
                 );
               }
               else if(item.type==='title'){
@@ -97,5 +129,11 @@ const styles =  StyleSheet.create( {
         textAlign: 'center',
         margin: 10,
         color: '#000000'
+      },
+      text:{
+        fontSize:20,
+        fontColor:'#000',
+        fontWeight:'bold'
       }
+
 }); 

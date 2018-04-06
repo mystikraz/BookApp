@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button, FlatList, AsyncStorage } from "react-native";
+import { View,Animated, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Button, FlatList, AsyncStorage } from "react-native";
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from "react-native-simple-radio-button"
-import deviceLog, { LogView, InMemoryAdapter } from 'react-native-device-log';
 const width = Dimensions.get('window').width;
 
 
@@ -36,7 +35,12 @@ export default class MatchFields extends React.Component {
         }     
 https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jpg
         */
-
+        constructor(props)
+        {
+            super(props);
+            this.correctAnimation = this.correctAnimation.bind(this);
+            this.incorrectAnimation = this.incorrectAnimation.bind(this);
+        }
 
     state = {
         // cola1Selected: false,
@@ -55,7 +59,8 @@ https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jp
         colb3: false,
         colb4: false,
         colb5: false,
-        s: 'Correctly Matched'
+        s: 'Correctly Matched',
+        anim:new Animated.Value(-1)
 
 
 
@@ -70,18 +75,63 @@ https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jp
 
     }
 
+    correctAnimation(e)
+    {
+
+        Animated.timing(
+            this.state.anim,
+            {
+                toValue:1,
+                duration:100
+            }
+        ).start(()=>{
+            Animated.timing(
+                this.state.anim,
+                {
+                    toValue:-1,
+                    duration:100
+                }
+            ).start();
+
+        });
+
+    }
+
+    incorrectAnimation(e)
+    {
+     Animated.timing(
+         this.state.anim,
+         {
+             toValue:1,
+             duration:100
+         }
+     ).start(
+         ()=>{
+             Animated.timing(
+                 this.state.anim,
+                 {
+                     toValue:-1,
+                     duration:100
+                 }
+             ).start();
+         }
+     );
+
+    }
+
 
     render() {
-        if (this.state.cola1 &&
-            this.state.cola2 &&
-            this.state.cola3 &&
-            this.state.cola4 &&
-            this.state.colb1 &&
-            this.state.colb2 &&
-            this.state.colb3 &&
-            this.state.colb4) {
+
+        if ((this.state.cola1 ||
+            this.state.cola2) &&
+            (this.state.cola3 ||
+            this.state.cola4) &&
+            (this.state.colb1 ||
+            this.state.colb2) &&
+            (this.state.colb3 ||
+            this.state.colb4)) {
             return (
-                <View style={{ width: 100, height: 300 }}>
+                <View style={{ width: 100, height: 300,opacity:0.7,alignSelf:'center' }}>
                     <Image source={{ uri: 'https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jpg' }} style={{ width: 200, height: 200 }} />
                     {/* <Text style={{ fontSize: 40 }} >
                         {this.state.s}
@@ -93,12 +143,12 @@ https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jp
             return (
                 <View style={{ flex: 1 }}>
 
-                    <View style={{ flex: 1 }}>
+                    {/* <View style={{ flex: 1 }}>
                         <Text style={{ fontSize: 20 }}> {this.props.question}</Text>
 
-                    </View>
+                    </View> */}
                     <View style={styles.choices}>
-                        <View style={{ flex: 1, flexDirection: 'column', width: width / 2, height: 300, backgroundColor: '#A0642A' }}>
+                        <View style={{ flex: 1, flexDirection: 'column', width: width / 2, height: 300 }}>
                             <TouchableOpacity
                                 onPress={() => {
                                     this.setState({ currentlySelectedA: 'cola1', currentlySelectedAVal: this.props.cola[0] });
@@ -218,7 +268,7 @@ https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jp
                                 style={this.state.cola4?styles.active:styles.hidden}/> */}
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'column', color: '#000000', width: width / 2, height: 300, backgroundColor: '#2A64A0' }}>
+                        <View style={{ flex: 1, flexDirection: 'column', color: '#000000', width: width / 2, height: 300,  }}>
                             <TouchableOpacity
                                 onPress={() => {
                                     this.setState({ currentlySelectedB: 'colb1', currentlySelectedBVal: this.props.colb[0] });
@@ -331,7 +381,7 @@ https://png.pngtree.com/element_pic/17/09/16/6ba96ffc82c13a9c4271233ab23e9afe.jp
                                         }
                                     }, this);
                                 }}
-                                style={('colb4') === (this.state.currentlySelectedB) ? styles.yellow : styles.normal}
+                                style={('colb4') === (this.state.currentlySelectedB) ? styles.green : styles.normal}
                                 pointerEvents={this.state.colb4 ? 'none' : 'auto'}
                                 disabled={this.state.colb4}
                             >

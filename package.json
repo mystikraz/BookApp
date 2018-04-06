@@ -11,14 +11,13 @@
     "i": "^0.3.6",
     "react": "16.0.0",
     "react-native": "0.51.0",
+    "react-native-card-view": "0.0.3",
     "react-native-device-log": "^1.0.2",
     "react-native-material-bottom-navigation": "^0.7.0",
     "react-native-router-flux": "file:react-native-router-flux",
     "react-native-simple-radio-button": "^2.7.1",
     "react-native-sound": "^0.10.4",
     "react-native-view-pager": "^0.2.2",
-    "react-native-youtube": "^1.0.1",
-    "react-native-youtube-player": "0.0.2",
     "react-navigation": "^1.0.0-beta.27",
     "recyclerlistview": "^1.2.2",
     "rn-viewpager": "^1.2.9"
@@ -47,5 +46,10 @@
   "bugs": {
     "url": "https://github.com/uyogesh/BookApp/issues"
   },
-  "homepage": "https://github.com/uyogesh/BookApp#readme"
+  "homepage": "https://github.com/uyogesh/BookApp#readme",
+  "rnpm":{
+    "assets":[
+      "./assets/fonts/"
+    ]
+  }
 }

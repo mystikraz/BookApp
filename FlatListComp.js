@@ -68,7 +68,7 @@ const styles =  StyleSheet.create( {
       },
       welcome: {
         fontSize: 20,
-        textAlign: 'center',
+        textAlign: 'justify',
         margin: 10,
         color: '#000000'
       }

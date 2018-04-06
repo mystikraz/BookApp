@@ -19,7 +19,9 @@ import {
   ViewPagerAndroid,
   AppRegistry,
   NativeModules,
-
+  BackAndroid,
+  BackHandler,
+  Animated
 } from 'react-native';
 
 import { StackNavigator } from "react-navigation";
@@ -103,6 +105,7 @@ export default class App extends Component {
       ]
     ],
     whichScreen: main,
+    header: new Animated.Value(1)
   };
 
 
@@ -142,44 +145,23 @@ export default class App extends Component {
     this.setState({ data: [...this.state.data, ...newData] });
   };
 
-
   render() {
+    BackHandler.addEventListener('hardwareBackPress',()=>{
+
+      if(this.state.whichScreen==quiz)
+      {
+        this.setState({whichScreen:main});
+        return false;
+      }
+      return true;
+    });
 
 
     if (this.state.isReady) {
       if (this.state.whichScreen == main) {
         return (
           <View style={styles.main}>
-            {/* <View style={styles.container}>
-            <Picker
-              selectedValue={this.state.grade || 'Grade'}
-              onValueChange={(value) => this.setState({
-
-
-              })}
-              style={styles.picker}
-              mode="dropdown">
-
-              <Picker.Item value='chapter' label='chapter' />
-              <Picker.Item value='chapter' label='chapter' />
-            </Picker>
-            <Picker enabled={!(this.state.grade == "none")}
-              selectedValue={this.state.chapter || "Chapter"}
-              onValueChange={(value) => this.setState({
-                isReady: true,
-
-              })}
-              style={styles.picker}
-              mode="dropdown">
-              <Picker.Item value='chapter' label='chapter' />
-              <Picker.Item value='chapter' label='chapter' />
-
-            </Picker>
-
-
-
-          </View> */}
-
+            
             <View style={styles.list}>
 
                <IndicatorViewPager
@@ -191,39 +173,16 @@ export default class App extends Component {
               {this.state.data.map(d => (
                 <FlatListComp
                   data={d}
-                  style={{ flex: 1, flexWrap: 'wrap' }}>
+                  style={{ flex: 1 }}>
                   {this.state.data}
                 </FlatListComp>
               ))}
              
             </IndicatorViewPager> 
-              {/* 
-            <MatchFields
-              style={{ flex: 1, flexWrap: 'wrap' }}
-              cola={ [
-                {'text':'peigon'},
-                {'text':'hedgehog'},
-                {'text':'peacock'},
-                {'text':'elephant'}
-            ]}
-            colb={  [
-              { 'text': 'Sonic the ?' },
-              { 'text': 'Message Carrier' },
-              { 'text': 'Biggest Mammal' },
-              { 'text': 'The Magnificent' }
-          ]}
-
-              question={"Please Match The Following."}
-              answer={[['peigon','Message Carrier'],
-                        ['hedgehog','Sonic the ?'],
-                        ['peacock','The Magnificent'],
-                        ['elephant','Biggest Mammal']]}
-
-            > </MatchFields> */}
               <Button onPress={() => {
                 this.setState({whichScreen:quiz});
               }}
-                title="Click" />
+                title="Quiz" />
             </View>
 
 
@@ -241,6 +200,7 @@ export default class App extends Component {
       }
     }
     else {
+      
       return (
         <View style={styles.main}>
           <View style={styles.container}>
@@ -280,6 +240,9 @@ export default class App extends Component {
 
 
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -292,7 +255,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
     flexDirection: 'column',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#cbd1d3',
   },
   welcome: {
     fontSize: 20,
